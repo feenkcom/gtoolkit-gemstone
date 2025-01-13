@@ -65,11 +65,6 @@ sleep 1
 
 if [[ -z "${USE_ROWAN}" || "${USE_ROWAN}" = "no" ]]
 then
-  if [ ! -d Sparkle ]
-  then
-    git clone https://github.com/feenkcom/Sparkle.git
-    chmod +x Sparkle/src-gs/*.sh
-  fi
   "${ROWAN_PROJECTS_HOME}/gt4gemstone/scripts/release/package-release.sh"
   "${GEMSTONE_WORKSPACE}/${RELEASED_PACKAGE_GEMSTONE_NAME}/inputRelease.sh" -s "${STONE}"
 else

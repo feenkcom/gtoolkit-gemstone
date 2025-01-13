@@ -46,16 +46,15 @@ fi
 #Package the required files into an archive
 echo "Package release"
 
-SPARKLE_HOME=${ROWAN_PROJECTS_HOME}/Sparkle
 GT4GEMSTONE_HOME=${ROWAN_PROJECTS_HOME}/gt4gemstone
 GTOOLKIT_REMOTE_HOME=${ROWAN_PROJECTS_HOME}/gtoolkit-remote
 
 mkdir $GT4GEMSTONE_RELEASE_FOLDER
-mkdir -p ${GT4GEMSTONE_RELEASE_FOLDER}/Sparkle/src-gs
 mkdir -p ${GT4GEMSTONE_RELEASE_FOLDER}/gt4gemstone/src-gs
 mkdir -p ${GT4GEMSTONE_RELEASE_FOLDER}/gtoolkit-remote/src-gs
 
-cp ${imageDirectory}/Sparkle/src-gs/bootstrapSparkle.gs ${GT4GEMSTONE_RELEASE_FOLDER}/Sparkle/src-gs/
+cp ${GT4GEMSTONE_HOME}/src-gs/Announcements.gs ${GT4GEMSTONE_RELEASE_FOLDER}/gt4gemstone/src-gs/
+cp ${GT4GEMSTONE_HOME}/src-gs/RemoteServiceReplication.gs ${GT4GEMSTONE_RELEASE_FOLDER}/gt4gemstone/src-gs/
 cp ${GT4GEMSTONE_HOME}/src-gs/STON.gs ${GT4GEMSTONE_RELEASE_FOLDER}/gt4gemstone/src-gs/
 cp ${GT4GEMSTONE_HOME}/src-gs/gt4gemstone.gs ${GT4GEMSTONE_RELEASE_FOLDER}/gt4gemstone/src-gs/
 cp ${GTOOLKIT_REMOTE_HOME}/src-gs/gtoolkit-remote.gs ${GT4GEMSTONE_RELEASE_FOLDER}/gtoolkit-remote/src-gs/
