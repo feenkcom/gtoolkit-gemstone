@@ -49,6 +49,9 @@ ln -s ../../gt4gemstone
 ln -s ../../gtoolkit-remote
 popd
 
+chmod +x ./gt4gemstone/scripts/*.sh
+chmod +x ./gt4gemstone/scripts/release/*.sh
+
 # Configure GemStone
 pushd "$GEMSTONE/install"
 "$SCRIPT_DIR/gtinstallgs"
@@ -59,14 +62,13 @@ startnetldi -g
 startstone "${STONE}"
 sleep 1
 
-echo "ROWAN_PROJECTS_HOME=$ROWAN_PROJECTS_HOME :"
-ls -l "$ROWAN_PROJECTS_HOME"
-echo "gtoolkit-remote/scripts:"
-ls -l "$ROWAN_PROJECTS_HOME/gtoolkit-remote/scripts"
-
-
 if [ "${USE_ROWAN}" = "no" ]
 then
+  if [ ! -d Sparkle ]
+  then
+    git clone https://github.com/feenkcom/Sparkle.git
+    chmod +x Sparkle/src-gs/*.sh
+  fi
   "${ROWAN_PROJECTS_HOME}/gt4gemstone/scripts/release/package-release.sh"
   "${GEMSTONE_WORKSPACE}/${RELEASED_PACKAGE_GEMSTONE_NAME}/inputRelease.sh" -s "${STONE}"
 else
@@ -74,7 +76,12 @@ else
   pushd $GEMSTONE/data
   rm *.log tranlog1.dbf 
   mv extent0.dbf extent0.dbf.bak
-  cp $GEMSTONE/bin/extent0.${USE_ROWAN}.dbf ./extent0.dbf
+  if [ $USE_ROWAN = "rowan2" ]
+  then
+    cp $GEMSTONE/bin/extent0.rowan.dbf ./extent0.dbf
+  else
+    cp $GEMSTONE/bin/extent0.${USE_ROWAN}.dbf ./extent0.dbf
+  fi
   chmod 644 extent0.dbf
   popd
   startnetldi -g
