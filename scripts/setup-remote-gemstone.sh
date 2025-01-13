@@ -63,7 +63,7 @@ startnetldi -g
 startstone "${STONE}"
 sleep 1
 
-if [[ -z "${USE_ROWN}" || "${USE_ROWAN}" = "no" ]]
+if [[ -z "${USE_ROWAN}" || "${USE_ROWAN}" = "no" ]]
 then
   if [ ! -d Sparkle ]
   then
