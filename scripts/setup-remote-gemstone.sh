@@ -17,6 +17,7 @@ function stop_servers()
         stopnetldi
 }
 
+STONE=gs64stone
 DIR=`readlink "$0"` || DIR="$0";
 export SCRIPT_DIR="$(cd "$(dirname "${DIR}")" && pwd)"
 # Set up environment variables
@@ -62,7 +63,7 @@ startnetldi -g
 startstone "${STONE}"
 sleep 1
 
-if [ "${USE_ROWAN}" = "no" ]
+if [[ -z "${USE_ROWN}" || "${USE_ROWAN}" = "no" ]]
 then
   if [ ! -d Sparkle ]
   then
@@ -76,7 +77,7 @@ else
   pushd $GEMSTONE/data
   rm *.log tranlog1.dbf 
   mv extent0.dbf extent0.dbf.bak
-  if [ $USE_ROWAN = "rowan2" ]
+  if [ "$USE_ROWAN" = "rowan2" ]
   then
     cp $GEMSTONE/bin/extent0.rowan.dbf ./extent0.dbf
   else
